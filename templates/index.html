@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Real-Time Object Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">AI</div>
+    <div><h1>Real-Time Object Detection</h1><p>Computer vision powered by YOLO + OpenCV</p></div>
+    <span class="live-pill" id="statusPill">● STOPPED</span>
+  </header>
+
+  <main class="layout">
+    <section class="video-card">
+      <div class="section-heading">
+        <div><h2>Live camera</h2><p>Uses the laptop's built-in webcam</p></div>
+        <span class="camera-tag">CAMERA 0</span>
+      </div>
+      <div class="video-wrap">
+        <img id="video" alt="Live object detection feed" />
+        <div class="placeholder" id="placeholder">
+          <div class="camera-icon">▣</div>
+          <strong>Camera is not running</strong>
+          <span>Press Start Detection to begin</span>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="primary" id="startBtn">▶ Start Detection</button>
+        <button class="secondary" id="stopBtn" disabled>■ Stop</button>
+        <button class="secondary" id="captureBtn" disabled>▣ Save Snapshot</button>
+      </div>
+      <p class="notice" id="message" role="status">Ready. Start detection when you're ready.</p>
+    </section>
+
+    <aside class="side-column">
+      <section class="panel">
+        <h2>Detection summary</h2>
+        <div class="stats">
+          <div class="stat"><span>Objects detected</span><strong id="objectCount">0</strong></div>
+          <div class="stat"><span>Processing FPS</span><strong id="fps">0</strong></div>
+        </div>
+        <h3>Current objects</h3>
+        <ul class="detection-list" id="detectionList"><li class="empty">No objects detected yet</li></ul>
+      </section>
+
+      <section class="panel settings">
+        <h2>Settings</h2>
+        <label class="switch-row" for="voiceToggle">
+          <span><strong>Voice announcement</strong><small>Speak detected object names</small></span>
+          <input type="checkbox" id="voiceToggle" checked>
+        </label>
+        <p class="small-note" id="voiceNote">Voice is processed by your computer's speech engine.</p>
+        <div class="model-info"><span>MODEL</span><strong>YOLOv8 Nano</strong><small>Pre-trained COCO object classes</small></div>
+      </section>
+
+      <section class="panel tip">
+        <h2>Quick tips</h2>
+        <ul>
+          <li>Allow browser/OS camera access if prompted.</li>
+          <li>Good lighting improves detection.</li>
+          <li>Press Save Snapshot to store an annotated image.</li>
+          <li>Voice alerts repeat an object at most once every 8 seconds.</li>
+        </ul>
+      </section>
+    </aside>
+  </main>
+  <footer>Educational demonstration · Python · Flask · OpenCV · Ultralytics YOLO</footer>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
